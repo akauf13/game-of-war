@@ -16,7 +16,7 @@ class Deck {
   }
 
   createDeck() {
-    let suits = ["Heart", "Spade", "Club", "Diamond"];
+    let suits = ["Hearts", "Spades", "Clubs", "Diamonds"];
     let ranks = [
       "2",
       "3",
@@ -90,7 +90,7 @@ class GameOfWar {
         rounds++
         console.log("");
         console.log(`ROUND ${rounds}`);
-        console.log(`WAR HAS BEEN DECLARED: Player One has the ${this.playerOne.at(-1).score} of ${this.playerOne.at(-1).suit}s and Player Two has the ${this.playerTwo.at(-1).score} of ${this.playerTwo.at(-1).suit}s.`);
+        console.log(`WAR HAS BEEN DECLARED: Player One has the ${this.playerOne.at(-1).score} of ${this.playerOne.at(-1).suit} and Player Two has the ${this.playerTwo.at(-1).score} of ${this.playerTwo.at(-1).suit}.`);
         if (this.playerOne.length > 4 && this.playerTwo.length > 4) {
           //Declare War
           this.table.push(this.playerOne.pop());
@@ -104,14 +104,14 @@ class GameOfWar {
           this.table.push(this.playerOne.pop());
           this.table.push(this.playerTwo.pop());
           
-          // this.draw()
+
         }
-        else if (this.playerOne.length < 4) {
+        else if (this.playerOne.length <= 4) {
           this.playerTwo.unshift(...this.playerOne)
           this.playerTwo.unshift(...this.table)
           this.playerOne.length = 0
           this.table.length = 0
-
+          console.log(`Player One does not have enough cards to continue.`);
         }
         
         else {
@@ -119,6 +119,7 @@ class GameOfWar {
           this.playerOne.unshift(...this.table)
           this.playerTwo.length = 0
           this.table.length = 0
+          console.log(`Player Two does not have enough cards to continue.`);
 
         }
         //
@@ -127,10 +128,10 @@ class GameOfWar {
         rounds++
         console.log("");
         console.log(`ROUND ${rounds}`);
-        console.log(`Player One wins the round! Player One has the ${this.playerOne.at(-1).score} of ${this.playerOne.at(-1).suit}s and Player Two has the ${this.playerTwo.at(-1).score} of ${this.playerTwo.at(-1).suit}s.`);
+        console.log(`Player One wins the round! Player One has the ${this.playerOne.at(-1).score} of ${this.playerOne.at(-1).suit} and Player Two has the ${this.playerTwo.at(-1).score} of ${this.playerTwo.at(-1).suit}.`);
         //Player one wins round
-        this.table.push(this.playerOne.pop());
         this.table.push(this.playerTwo.pop());
+        this.table.push(this.playerOne.pop());
         this.playerOne.unshift(...this.table)
         this.table.length = 0
         console.log(`Player One has ${this.playerOne.length} cards remaining.`);
@@ -140,7 +141,7 @@ class GameOfWar {
         rounds++
         console.log("");
         console.log(`ROUND ${rounds}`);
-        console.log(`Player Two wins the round! Player One has the ${this.playerOne.at(-1).score} of ${this.playerOne.at(-1).suit}s and Player Two has the ${this.playerTwo.at(-1).score} of ${this.playerTwo.at(-1).suit}s.`);
+        console.log(`Player Two wins the round! Player One has the ${this.playerOne.at(-1).score} of ${this.playerOne.at(-1).suit} and Player Two has the ${this.playerTwo.at(-1).score} of ${this.playerTwo.at(-1).suit}.`);
         //Player two wins round
         this.table.push(this.playerOne.pop());
         this.table.push(this.playerTwo.pop());
@@ -153,11 +154,15 @@ class GameOfWar {
     }
 
     if (this.playerOne.length === 0) {
-      console.log(`Player Two Wins!", Player Two has collected all ${this.playerTwo.length} cards!`);
+      console.log("");
+      console.log(`Player Two Wins the Game Of War!, Player Two has collected all ${this.playerTwo.length} cards!`);
+      console.log(`The game lasted ${rounds} rounds!`);
       
     }
     else if (this.playerTwo.length === 0) {
-      console.log(`Player One Wins!, Player One has collected all ${this.playerOne.length} cards!`);
+      console.log("");
+      console.log(`Player One Wins the Game Of War!, Player One has collected all ${this.playerOne.length} cards!`);
+      console.log(`The game lasted ${rounds} rounds!`);
     }
 
   }
@@ -165,4 +170,3 @@ class GameOfWar {
 
 let game = new GameOfWar();
 
-// let gamblerDeck = new Deck();
